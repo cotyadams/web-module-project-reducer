@@ -1,9 +1,9 @@
 import { ADD_ONE, APPLY_NUMBER, CHANGE_OPERATION } from './../actions';
 
 export const initialState = {
-    total: 100,
+    total: 0,
     operation: "*",
-    memory: 100
+    memory: 0
 }
 
 const calculateResult = (num1, num2, operation) => {
@@ -36,6 +36,14 @@ const reducer = (state, action) => {
                 ...state,
                 operation: action.payload
             });
+        case ('CLEAR_MEMORY'):
+            return ({ ...state, memory: 0 })
+        case ('ADD_MEMORY'):
+            return ({ ...state, total: [state.total * 1 + state.memory * 1] })
+        case ('CLEAR_TOTAL'):
+            return ({ ...state, total: 0 })
+        case ('SET_MEMORY'):
+            return ({...state, memory: action.payload})
             
         default:
             return state;
